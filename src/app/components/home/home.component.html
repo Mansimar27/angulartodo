@@ -1,0 +1,26 @@
+<div>
+    <div class="ml-15">
+        <h1 class="mb-0">Hello!</h1>
+        <span>This is a ToDo App.</span>
+    </div>
+    <hr class="mt-15">
+    <div class="mr-15 buttons">
+        <button class="button" (click)="addNewToDo()">Add New ToDo</button>
+        <button class="button ml-15" (click)="goToTrashBin()">Go To Trash Bin</button>
+    </div><br><br>
+    <div *ngFor="let task of list">
+        <div class="todo" (click)="editToDo()">
+            <div class="ml-11 high priority" *ngIf="task.priority"></div>
+            <div class="ml-11 low priority" *ngIf="!task.priority"></div>
+            <h3 class="ml-11">{{task.task}}</h3>
+            <div class="mr-15 metaData">
+                <span>Status: {{task.status}}</span><br>
+                <span>Created On: {{formatDate(task.createdAt)}}</span>
+                <br><span>Due Date: {{formatDate(task.dueDate)}}</span>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!list.length">
+        <h3 class="noToDo">No ToDo (s) here !!</h3>
+    </div>
+</div>

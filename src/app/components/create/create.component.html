@@ -1,0 +1,33 @@
+<div>
+    <div class="ml-15">
+        <h1 class="mb-0">Amazing!</h1>
+        <span>Create a New ToDo here.</span>
+    </div>
+    <hr class="mt-15">
+    <div class="mr-15 buttons">
+        <button class="button" (click)="create()">Create</button>
+        <button class="button ml-15" (click)="goToHome()">Go To Home</button>
+    </div><br><br>
+    <div style="text-align: center;">
+        <form>
+            <br>
+            <div>
+                <label>Task</label><br>
+                <input type="text" placeholder="Add Task Description here" style="width: 70%; height: 50px;">
+            </div>
+            <br>
+            <div>
+                <label>Priority</label><br>
+                <input type="checkbox" id="switch" class="checkbox" />
+                <label for="switch" class="toggle">
+                    <p>Low High</p>
+                </label>
+            </div>
+            <br>
+            <div>
+                <label>Due Date</label><br>
+                <input type="date" style="width: 25%; height: 25px;">
+            </div>
+        </form>
+    </div>
+</div>

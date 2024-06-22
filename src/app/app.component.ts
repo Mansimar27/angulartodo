@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
+import { AppService } from './app.service';
 import { RouterOutlet } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
-  selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  selector: 'app-root',
+  styleUrl: './app.component.css',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  providers: [AppService],
+  imports: [RouterOutlet, HttpClientModule],
 })
-export class AppComponent {
-  title = 'todo';
-}
+
+export class AppComponent { }

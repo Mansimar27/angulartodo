@@ -1,0 +1,65 @@
+.ml-11 {
+    margin-left: 11px;
+}
+
+.ml-15 {
+    margin-left: 15px;
+}
+
+.mr-15 {
+    margin-right: 15px;
+}
+
+.mt-15 {
+    margin-top: 15px;
+}
+
+.mb-0 {
+    margin-bottom: 0px;
+}
+
+.todo {
+    margin: 15px;
+    height: 75px;
+    display: flex;
+    cursor: pointer;
+    border-radius: 11px;
+    align-items: center;
+    background-color: lightcyan;
+}
+
+.priority {
+    width: 22px;
+    height: 22px;
+    border-radius: 15px;
+}
+
+.high {
+    background-color: red;
+}
+
+.low {
+    background-color: yellow;
+}
+
+.metaData {
+    margin-left: auto;
+    text-align: center;
+}
+
+.buttons {
+    float: right;
+    margin-top: 11px;
+}
+
+.button {
+    height: 25px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: cyan;
+}
+
+.noToDo {
+    margin-top: 25px;
+    text-align: center;
+}
