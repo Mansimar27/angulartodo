@@ -17,17 +17,27 @@ export class BinComponent implements OnInit {
 
   constructor(private appService: AppService, private router: Router) { }
 
+  limit: any;
+  isDesktop: any;
   list: any = [];
   loading: Boolean = true;
 
   ngOnInit(): void {
+    this.checkAgent();
     this.callGetDeletedToDo();
+  }
+
+  checkAgent = () => {
+    const details = navigator.userAgent;
+    const regexp = /android|iphone|kindle|ipad/i;
+    this.isDesktop = !regexp.test(details);
+    this.limit = this.isDesktop ? 100 : 20;
   }
 
   callGetDeletedToDo = () => {
     this.appService.getDeletedToDo().subscribe((res) => {
       if (res && res.success) {
-        this.list = res.todos;
+        this.list = res.data;
         this.loading = false;
       }
     });

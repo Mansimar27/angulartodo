@@ -33,9 +33,13 @@ export class EditComponent implements OnInit {
     this.activeRoute.params.subscribe((param) => {
       this.todoId = param['id'];
     });
+    this.callGetToDo();
+  }
+
+  callGetToDo = () => {
     this.appService.getToDo(this.todoId).subscribe((res) => {
-      if (res && res.todo) {
-        const { task, dueDate, priority, status } = res.todo;
+      if (res && res.data) {
+        const { task, dueDate, priority, status } = res.data;
         const date = new Date(dueDate);
         const readableDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
         this.todoForm.patchValue({
@@ -84,6 +88,7 @@ export class EditComponent implements OnInit {
   }
 
   done = () => {
+    this.loading = true;
     this.appService.deleteToDo(this.todoId).subscribe((res) => {
       if (res && res.success) {
         this.loading = false;

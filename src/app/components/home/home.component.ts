@@ -15,7 +15,10 @@ import { HttpClientModule } from '@angular/common/http';
 
 export class HomeComponent implements OnInit {
 
-  constructor(private appService: AppService, private router: Router) { }
+  constructor(
+    private router: Router,
+    private appService: AppService,
+  ) { }
 
   limit: any;
   isDesktop: any;
@@ -23,17 +26,21 @@ export class HomeComponent implements OnInit {
   loading: Boolean = true;
 
   ngOnInit(): void {
+    this.checkAgent();
+    this.callGetAllToDo();
+  }
+
+  checkAgent = () => {
     const details = navigator.userAgent;
     const regexp = /android|iphone|kindle|ipad/i;
     this.isDesktop = !regexp.test(details);
     this.limit = this.isDesktop ? 100 : 20;
-    this.callGetAllToDo();
   }
 
   callGetAllToDo = () => {
     this.appService.getAllToDo().subscribe((res) => {
       if (res && res.success) {
-        this.list = res.todos;
+        this.list = res.data;
         this.loading = false;
       }
     });
