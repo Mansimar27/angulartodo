@@ -17,10 +17,16 @@ export class HomeComponent implements OnInit {
 
   constructor(private appService: AppService, private router: Router) { }
 
+  limit: any;
+  isDesktop: any;
   list: any = [];
   loading: Boolean = true;
 
   ngOnInit(): void {
+    const details = navigator.userAgent;
+    const regexp = /android|iphone|kindle|ipad/i;
+    this.isDesktop = !regexp.test(details);
+    this.limit = this.isDesktop ? 100 : 20;
     this.callGetAllToDo();
   }
 
@@ -34,10 +40,10 @@ export class HomeComponent implements OnInit {
   }
 
   formatTask = (task: any) => {
-    if (task.length < 35) {
+    if (task.length < this.limit) {
       return task;
     }
-    return `${task.slice(0, 35)}...`;
+    return `${task.slice(0, this.limit)}...`;
   }
 
   formatDate = (date: any) => {

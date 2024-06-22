@@ -18,9 +18,11 @@
                 <div title="Low Priority" class="ml-11 low priority" *ngIf="!task.priority"></div>
                 <h3 title={{task.task}} class="ml-11">{{formatTask(task.task)}}</h3>
                 <div class="mr-15 metaData">
-                    <span>Status: {{task.status}}</span><br>
-                    <span>Created On: {{formatDate(task.createdAt)}}</span>
-                    <br><span>Due Date: {{formatDate(task.dueDate)}}</span>
+                    <span>Status: {{task.status}}</span>
+                    <div *ngIf="isDesktop">
+                        <span>Created On: {{formatDate(task.createdAt)}}</span>
+                        <br><span>Due Date: {{formatDate(task.dueDate)}}</span>
+                    </div>
                 </div>
             </div>
         </div><br>
