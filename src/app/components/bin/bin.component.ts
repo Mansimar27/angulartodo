@@ -18,22 +18,35 @@ export class BinComponent implements OnInit {
   constructor(private appService: AppService, private router: Router) { }
 
   list: any = [];
+  loading: Boolean = true;
 
   ngOnInit(): void {
     this.callGetDeletedToDo();
   }
 
   callGetDeletedToDo = () => {
-    console.log("Call Get Deleted ToDo!");
     this.appService.getDeletedToDo().subscribe((res) => {
       if (res && res.success) {
         this.list = res.todos;
+        this.loading = false;
       }
     });
   }
 
+  formatTask = (task: any) => {
+    if (task.length < 35) {
+      return task;
+    }
+    return `${task.slice(0, 35)}...`;
+  }
+
+  formatDate = (date: any) => {
+    const options: any = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = new Date(date);
+    return formattedDate.toLocaleDateString("en-US", options);
+  }
+
   goToHome = () => {
-    console.log("Go To Home!");
     this.router.navigate(['/home']);
   }
 }

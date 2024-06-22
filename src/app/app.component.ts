@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppService } from './app.service';
 import { RouterOutlet } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -12,4 +12,9 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [RouterOutlet, HttpClientModule],
 })
 
-export class AppComponent { }
+export class AppComponent implements OnInit {
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+}

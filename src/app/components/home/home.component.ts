@@ -18,18 +18,26 @@ export class HomeComponent implements OnInit {
   constructor(private appService: AppService, private router: Router) { }
 
   list: any = [];
+  loading: Boolean = true;
 
   ngOnInit(): void {
     this.callGetAllToDo();
   }
 
   callGetAllToDo = () => {
-    console.log("Call Get All ToDo!");
     this.appService.getAllToDo().subscribe((res) => {
       if (res && res.success) {
         this.list = res.todos;
+        this.loading = false;
       }
     });
+  }
+
+  formatTask = (task: any) => {
+    if (task.length < 35) {
+      return task;
+    }
+    return `${task.slice(0, 35)}...`;
   }
 
   formatDate = (date: any) => {
@@ -39,17 +47,14 @@ export class HomeComponent implements OnInit {
   }
 
   addNewToDo = () => {
-    console.log("Add New ToDo!");
     this.router.navigate(['/create']);
   }
 
   goToTrashBin = () => {
-    console.log("Go To Trash Bin!");
     this.router.navigate(['/bin']);
   }
 
-  editToDo = () => {
-    console.log("Edit ToDo!");
-    this.router.navigate(['/edit']);
+  editToDo = (id: any) => {
+    this.router.navigate(['/edit/' + id]);
   }
 }

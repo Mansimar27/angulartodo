@@ -8,9 +8,12 @@ import { HttpClient } from '@angular/common/http';
 
 export class AppService {
 
-    selectedToDo: any = {};
     constructor(private http: HttpClient) { }
     private apiUrl = 'https://mansimartodo-fdf9b8cead63.herokuapp.com/';
+
+    getToDo(id: any): Observable<any> {
+        return this.http.get<any>(this.apiUrl + "getToDo/" + id);
+    }
 
     getAllToDo(): Observable<any> {
         return this.http.get<any>(this.apiUrl + "getAllToDo");
@@ -28,7 +31,7 @@ export class AppService {
         return this.http.put<any>(this.apiUrl + "updateToDo/" + id, { task, priority, status, dueDate });
     }
 
-    deletedToDo(id: any): Observable<any> {
-        return this.http.delete<any>(this.apiUrl + "deletedToDo/" + id);
+    deleteToDo(id: any): Observable<any> {
+        return this.http.delete<any>(this.apiUrl + "deleteToDo/" + id);
     }
 }

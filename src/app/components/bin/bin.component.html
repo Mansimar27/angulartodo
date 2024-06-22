@@ -1,23 +1,28 @@
 <div>
     <div class="ml-15">
-        <h1 class="mb-0">Trash Bin</h1>
-        <span>Here are all the Deleted ToDo (s).</span>
+        <h1 class="mb-0">ToDo List</h1>
+        <span>Here are all the Completed ToDo (s).</span>
     </div>
     <hr class="mt-15">
-    <div class="mr-15 buttons">
-        <button class="button" (click)="goToHome()">Go To Home</button>
-    </div><br><br>
-    <div *ngFor="let task of list">
-        <div class="todo">
-            <div class="ml-11 high priority" *ngIf="task.priority"></div>
-            <div class="ml-11 low priority" *ngIf="!task.priority"></div>
-            <h3 class="ml-11">{{task.task}}</h3>
-            <div class="mr-15 metaData">
-                <span>Due Date: {{task.dueDate}}</span>
-            </div>
-        </div>
+    <div *ngIf="loading"><br>
+        <h3 class="noToDo">Loading...</h3>
     </div>
-    <div *ngIf="!list.length">
-        <h3 class="noToDo">No ToDo (s) here !!</h3>
+    <div *ngIf="!loading">
+        <div class="mr-15 buttons">
+            <button class="button" (click)="goToHome()">Go To Home</button>
+        </div><br><br>
+        <div *ngFor="let task of list">
+            <div class="todo">
+                <div title="High Priority" class="ml-11 high priority" *ngIf="task.priority"></div>
+                <div title="Low Priority" class="ml-11 low priority" *ngIf="!task.priority"></div>
+                <h3 title={{task.task}} class="ml-11">{{formatTask(task.task)}}</h3>
+                <div class="mr-15 metaData">
+                    <span>Completed On: {{formatDate(task.updatedAt)}}</span>
+                </div>
+            </div>
+        </div><br>
+        <div *ngIf="!list.length">
+            <h3 class="noToDo">No ToDo (s) here !!</h3>
+        </div>
     </div>
 </div>

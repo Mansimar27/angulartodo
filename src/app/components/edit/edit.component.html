@@ -1,7 +1,7 @@
 <div>
     <div class="ml-15">
-        <h1 class="mb-0">Amazing!</h1>
-        <span>Create a New ToDo here.</span>
+        <h1 class="mb-0">Edit</h1>
+        <span>Edit your ToDo here.</span>
     </div>
     <hr class="mt-15">
     <div *ngIf="loading"><br>
@@ -9,19 +9,20 @@
     </div>
     <div *ngIf="!loading">
         <div class="mr-15 buttons">
-            <button class="button" (click)="goToHome()">Go To Home</button>
+            <button style="background-color: lightgreen;" class="button" (click)="done()">Mark as Done</button>
+            <button class="button ml-11" (click)="goToHome()">Go To Home</button>
         </div><br><br>
         <div style="text-align: center;">
-            <form [formGroup]="todoForm" (ngSubmit)="create()">
+            <form [formGroup]="todoForm" (ngSubmit)="update()">
                 <br>
                 <div>
-                    <label>Task Details*</label><br>
+                    <label>Task Details</label><br>
                     <input type="text" placeholder="Enter Task Description here..." formControlName="task"
                         style="width: 50%; height: 50px; text-align: center; border-radius: 5px; border-width: 1px;">
                 </div>
                 <br>
                 <div>
-                    <label>Due Date*</label><br>
+                    <label>Due Date</label><br>
                     <input type="date" formControlName="dueDate"
                         style="width: 25%; height: 25px; text-align: center; border-radius: 5px; border-width: 1px;">
                 </div>
@@ -31,9 +32,9 @@
                     <select
                         style="background-color: white; width: 25%; height: 25px; text-align: center; border-radius: 5px; border-width: 1px;"
                         name="status" id="status" formControlName="status">
-                        <option value="" selected disabled>Set Task Status</option>
                         <option value="Pending">Pending</option>
                         <option value="Doing">Doing</option>
+                        <option value="Done">Done</option>
                     </select>
                 </div>
                 <br>
@@ -53,7 +54,7 @@
                     <span style="color: red;">Due Date shouldn't be in Past!</span>
                 </div>
                 <br><br>
-                <button type="submit" style="height: 40px; width: 70px;" class="button">Create</button>
+                <button type="submit" style="height: 40px; width: 70px;" class="button">Update</button>
             </form>
         </div>
     </div>
